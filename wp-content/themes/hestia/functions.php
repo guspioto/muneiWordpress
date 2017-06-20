@@ -720,7 +720,9 @@ add_filter( 'fl_builder_upgrade_url', 'hestia_bb_upgrade_link' );
  * Custom Post Type Serviços
  */
 
-function my_custom_post_product() {
+
+add_action( 'init', 'my_custom_post_servicos' );
+function my_custom_post_servicos() {
   $labels = array(
     'name'               => _x( 'Serviços', 'post type general name' ),
     'singular_name'      => _x( 'Serviço', 'post type singular name' ),
@@ -745,12 +747,10 @@ function my_custom_post_product() {
     'supports'      => array( 'title', 'editor', 'thumbnail', 'excerpt', 'comments' ),
     'has_archive'   => true,
   );
-  register_post_type( 'product', $args ); 
+  register_post_type( 'servicos', $args ); 
 }
-add_action( 'init', 'my_custom_post_product' );
 
-
-function my_taxonomies_product() {
+function my_taxonomies_servicos() {
   $labels = array(
     'name'              => _x( 'Categorias', 'taxonomy general name' ),
     'singular_name'     => _x( 'Categoria', 'taxonomy singular name' ),
@@ -768,14 +768,14 @@ function my_taxonomies_product() {
     'labels' => $labels,
     'hierarchical' => true,
   );
-  register_taxonomy( 'product_category', 'product', $args );
+  register_taxonomy( 'product_category', 'servicos', $args );
 }
-add_action( 'init', 'my_taxonomies_product', 0 );
+add_action( 'init', 'my_taxonomies_servicos', 0 );
 
 
 function my_updated_messages( $messages ) {
   global $post, $post_ID;
-  $messages['product'] = array(
+  $messages['servicos'] = array(
     0 => '', 
     1 => sprintf( __('Serviço atualizado. <a href="%s">View product</a>'), esc_url( get_permalink($post_ID) ) ),
     2 => __('Custom field atualizado.'),
@@ -793,20 +793,4 @@ function my_updated_messages( $messages ) {
 add_filter( 'post_updated_messages', 'my_updated_messages' );
 
 
-function my_contextual_help( $contextual_help, $screen_id, $screen ) { 
-  if ( 'product' == $screen->id ) {
-
-    $contextual_help = '<h2>Products</h2>
-    <p>Products show the details of the items that we sell on the website. You can see a list of them on this page in reverse chronological order - the latest one we added is first.</p> 
-    <p>You can view/edit the details of each product by clicking on its name, or you can perform bulk actions using the dropdown menu and selecting multiple items.</p>';
-
-  } elseif ( 'edit-product' == $screen->id ) {
-
-    $contextual_help = '<h2>Editing products</h2>
-    <p>This page allows you to view/modify product details. Please make sure to fill out the available boxes with the appropriate details (product image, price, brand) and <strong>not</strong> add these details to the product description.</p>';
-
-  }
-  return $contextual_help;
-}
-add_action( 'contextual_help', 'my_contextual_help', 10, 3 );
 
