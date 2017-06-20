@@ -778,7 +778,7 @@ function my_updated_messages( $messages ) {
   $messages['product'] = array(
     0 => '', 
     1 => sprintf( __('Serviço atualizado. <a href="%s">View product</a>'), esc_url( get_permalink($post_ID) ) ),
-    2 => __('Custom field updated.'),
+    2 => __('Custom field atualizado.'),
     3 => __('Custom field deleted.'),
     4 => __('Product updated.'),
     5 => isset($_GET['revision']) ? sprintf( __('Product restored to revision from %s'), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
