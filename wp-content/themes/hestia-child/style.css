@@ -1,0 +1,24 @@
+/*
+Theme Name:     Zenhouse
+Theme URI:      http://www.zenhouse.com.br/
+Description:    Zenhouse Template
+Author:         Zenhouse
+Author URI:     http://www.zenhouse.com.br/
+Template:       hestia                             
+Version:        1.0.0
+*/
+
+@import url("../hestia/style.css");
+
+.main-raised {
+	margin: 0px;
+    border-radius: 0px;
+}
+
+.navbar.navbar-transparent {
+    padding-top: 25px;
+    color: #ffffff;
+    background-color: #ffffff !important;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
