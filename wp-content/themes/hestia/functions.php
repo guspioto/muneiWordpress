@@ -717,26 +717,26 @@ function hestia_bb_upgrade_link() {
 add_filter( 'fl_builder_upgrade_url', 'hestia_bb_upgrade_link' );
 
 /**
- * Custom Post Type Serviços
+ * Custom Post Type Seguros
  */
 
 
-add_action( 'init', 'my_custom_post_servicos' );
-function my_custom_post_servicos() {
+add_action( 'init', 'my_custom_post_seguros' );
+function my_custom_post_seguros() {
   $labels = array(
-    'name'               => _x( 'Serviços', 'post type general name' ),
-    'singular_name'      => _x( 'Serviço', 'post type singular name' ),
+    'name'               => _x( 'Seguros', 'post type general name' ),
+    'singular_name'      => _x( 'Seguro', 'post type singular name' ),
     'add_new'            => _x( 'Adicionar Novo', 'book' ),
-    'add_new_item'       => __( 'Adicionar Novo Serviço' ),
-    'edit_item'          => __( 'Editar Serviço' ),
-    'new_item'           => __( 'Novo Serviço' ),
-    'all_items'          => __( 'Todos Serviços' ),
-    'view_item'          => __( 'Ver Serviço' ),
-    'search_items'       => __( 'Procurar Serviço' ),
-    'not_found'          => __( 'Nenhum Serviço Encontrado' ),
+    'add_new_item'       => __( 'Adicionar Novo Seguro' ),
+    'edit_item'          => __( 'Editar Seguro' ),
+    'new_item'           => __( 'Novo Seguro' ),
+    'all_items'          => __( 'Todos Seguros' ),
+    'view_item'          => __( 'Ver Seguro' ),
+    'search_items'       => __( 'Procurar Seguro' ),
+    'not_found'          => __( 'Nenhum Seguro Encontrado' ),
     'not_found_in_trash' => __( 'Nenhum registro encontrado na lixeira' ), 
     'parent_item_colon'  => '',
-    'menu_name'          => 'Serviços'
+    'menu_name'          => 'Seguros'
   );
 
   $args = array(
@@ -747,10 +747,10 @@ function my_custom_post_servicos() {
     'supports'      => array( 'title', 'editor', 'thumbnail', 'excerpt', 'comments' ),
     'has_archive'   => true,
   );
-  register_post_type( 'servicos', $args ); 
+  register_post_type( 'seguros', $args ); 
 }
 
-function my_taxonomies_servicos() {
+function my_taxonomies_seguros() {
   $labels = array(
     'name'              => _x( 'Categorias', 'taxonomy general name' ),
     'singular_name'     => _x( 'Categoria', 'taxonomy singular name' ),
@@ -768,21 +768,21 @@ function my_taxonomies_servicos() {
     'labels' => $labels,
     'hierarchical' => true,
   );
-  register_taxonomy( 'product_category', 'servicos', $args );
+  register_taxonomy( 'product_category', 'seguros', $args );
 }
-add_action( 'init', 'my_taxonomies_servicos', 0 );
+add_action( 'init', 'my_taxonomies_seguros', 0 );
 
 
 function my_updated_messages( $messages ) {
   global $post, $post_ID;
-  $messages['servicos'] = array(
+  $messages['seguros'] = array(
     0 => '', 
-    1 => sprintf( __('Serviço atualizado. <a href="%s">View product</a>'), esc_url( get_permalink($post_ID) ) ),
+    1 => sprintf( __('Seguro atualizado. <a href="%s">View product</a>'), esc_url( get_permalink($post_ID) ) ),
     2 => __('Custom field atualizado.'),
     3 => __('Custom field deletado.'),
     4 => __('Product updated.'),
     5 => isset($_GET['revision']) ? sprintf( __('Product restored to revision from %s'), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
-    6 => sprintf( __('Serviço Publicado. <a href="%s">View product</a>'), esc_url( get_permalink($post_ID) ) ),
+    6 => sprintf( __('Seguro Publicado. <a href="%s">View product</a>'), esc_url( get_permalink($post_ID) ) ),
     7 => __('Product saved.'),
     8 => sprintf( __('Product submitted. <a target="_blank" href="%s">Preview product</a>'), esc_url( add_query_arg( 'preview', 'true', get_permalink($post_ID) ) ) ),
     9 => sprintf( __('Product scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview product</a>'), date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) ), esc_url( get_permalink($post_ID) ) ),
@@ -792,5 +792,118 @@ function my_updated_messages( $messages ) {
 }
 add_filter( 'post_updated_messages', 'my_updated_messages' );
 
+
+/**
+ * Custom Post Type Investimentos
+ */
+
+add_action( 'init', 'my_custom_post_investimentos' );
+function my_custom_post_investimentos() {
+  $labels = array(
+    'name'               => _x( 'Investimentos', 'post type general name' ),
+    'singular_name'      => _x( 'Investimento', 'post type singular name' ),
+    'add_new'            => _x( 'Adicionar Novo', 'book' ),
+    'add_new_item'       => __( 'Adicionar Novo Investimento' ),
+    'edit_item'          => __( 'Editar Investimento' ),
+    'new_item'           => __( 'Novo Investimento' ),
+    'all_items'          => __( 'Todos Investimentos' ),
+    'view_item'          => __( 'Ver Investimento' ),
+    'search_items'       => __( 'Procurar Investimento' ),
+    'not_found'          => __( 'Nenhum Seguro Encontrado' ),
+    'not_found_in_trash' => __( 'Nenhum registro encontrado na lixeira' ), 
+    'parent_item_colon'  => '',
+    'menu_name'          => 'Investimentos'
+  );
+
+  $args = array(
+    'labels'        => $labels,
+    'description'   => 'Holds our products and product specific data',
+    'public'        => true,
+    'menu_position' => 5,
+    'supports'      => array( 'title', 'editor', 'thumbnail', 'excerpt', 'comments' ),
+    'has_archive'   => true,
+  );
+  register_post_type( 'investimentos', $args ); 
+}
+
+
+function my_taxonomies_investimentos() {
+  $labels = array(
+    'name'              => _x( 'Categorias', 'taxonomy general name' ),
+    'singular_name'     => _x( 'Categoria', 'taxonomy singular name' ),
+    'search_items'      => __( 'Search Product Categories' ),
+    'all_items'         => __( 'All Product Categories' ),
+    'parent_item'       => __( 'Parent Product Category' ),
+    'parent_item_colon' => __( 'Parent Product Category:' ),
+    'edit_item'         => __( 'Edit Product Category' ), 
+    'update_item'       => __( 'Update Product Category' ),
+    'add_new_item'      => __( 'Add New Product Category' ),
+    'new_item_name'     => __( 'New Product Category' ),
+    'menu_name'         => __( 'Categorias' ),
+  );
+  $args = array(
+    'labels' => $labels,
+    'hierarchical' => true,
+  );
+  register_taxonomy( 'product_category', 'investimentos', $args );
+}
+add_action( 'init', 'my_taxonomies_investimentos', 0 );
+
+
+/**
+ * Custom Post Type Cartões
+ */
+
+add_action( 'init', 'my_custom_post_cartoes' );
+function my_custom_post_cartoes() {
+  $labels = array(
+    'name'               => _x( 'Cartões', 'post type general name' ),
+    'singular_name'      => _x( 'Cartão', 'post type singular name' ),
+    'add_new'            => _x( 'Adicionar Novo', 'book' ),
+    'add_new_item'       => __( 'Adicionar Novo Cartão' ),
+    'edit_item'          => __( 'Editar Cartão' ),
+    'new_item'           => __( 'Novo Cartão' ),
+    'all_items'          => __( 'Todos Cartões' ),
+    'view_item'          => __( 'Ver Cartão' ),
+    'search_items'       => __( 'Procurar Cartão' ),
+    'not_found'          => __( 'Nenhum Seguro Encontrado' ),
+    'not_found_in_trash' => __( 'Nenhum registro encontrado na lixeira' ), 
+    'parent_item_colon'  => '',
+    'menu_name'          => 'Cartões'
+  );
+
+  $args = array(
+    'labels'        => $labels,
+    'description'   => 'Holds our products and product specific data',
+    'public'        => true,
+    'menu_position' => 5,
+    'supports'      => array( 'title', 'editor', 'thumbnail', 'excerpt', 'comments' ),
+    'has_archive'   => true,
+  );
+  register_post_type( 'cartoes', $args ); 
+}
+
+
+function my_taxonomies_cartoes() {
+  $labels = array(
+    'name'              => _x( 'Categorias', 'taxonomy general name' ),
+    'singular_name'     => _x( 'Categoria', 'taxonomy singular name' ),
+    'search_items'      => __( 'Search Product Categories' ),
+    'all_items'         => __( 'All Product Categories' ),
+    'parent_item'       => __( 'Parent Product Category' ),
+    'parent_item_colon' => __( 'Parent Product Category:' ),
+    'edit_item'         => __( 'Edit Product Category' ), 
+    'update_item'       => __( 'Update Product Category' ),
+    'add_new_item'      => __( 'Add New Product Category' ),
+    'new_item_name'     => __( 'New Product Category' ),
+    'menu_name'         => __( 'Categorias' ),
+  );
+  $args = array(
+    'labels' => $labels,
+    'hierarchical' => true,
+  );
+  register_taxonomy( 'product_category', 'cartoes', $args );
+}
+add_action( 'init', 'my_taxonomies_cartoes', 0 );
 
 
